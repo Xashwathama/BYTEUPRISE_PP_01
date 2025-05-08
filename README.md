@@ -47,14 +47,3 @@ A simple yet powerful To-Do List web application built using **Flask** and **HTM
       http://127.0.0.1:5000/
 
 ---
-
-## Project Structure
-
-flask-todo-list/
-│
-├── app.py
-├── static/
-│   └── styles.css
-├── templates/
-│   └── index.html
-└── README.md
