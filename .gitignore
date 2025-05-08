@@ -1,0 +1,27 @@
+# Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+*.env
+.env/
+
+# Flask app's SQLite database
+todo.db
+
+# VSCode settings
+.vscode/
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE-specific files (if using other IDEs)
+.idea/
+
+# pytest cache
+.cache/

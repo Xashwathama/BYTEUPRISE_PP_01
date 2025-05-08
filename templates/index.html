@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My To-Do List</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-light">
+    <div class="container mt-5">
+      <h2 class="text-center mb-4">📝 My To-Do List</h2>
+
+      <!-- Add Task Form -->
+      <form action="/add" method="POST" class="row g-3 mb-4">
+        <div class="col-md-3">
+          <input
+            type="text"
+            name="title"
+            class="form-control"
+            placeholder="Task title"
+            required
+          />
+        </div>
+        <div class="col-md-3">
+          <input
+            type="text"
+            name="description"
+            class="form-control"
+            placeholder="Description"
+          />
+        </div>
+        <div class="col-md-2">
+          <select name="priority" class="form-select">
+            <option value="">Priority</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <input type="date" name="due_date" class="form-control" />
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary w-100">Add Task</button>
+        </div>
+      </form>
+
+      <!-- Filter and Search -->
+      <form method="GET" class="row g-2 mb-3">
+        <div class="col-md-3">
+          <input type="text" name="search" value="{{ search or '' }}" class="form-control" placeholder="Search tasks...">
+        </div>
+        <div class="col-md-2">
+          <select name="status" class="form-select">
+            <option value="">Status</option>
+            <option value="pending" {% if status == 'pending' %}selected{% endif %}>Pending</option>
+            <option value="completed" {% if status == 'completed' %}selected{% endif %}>Completed</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <select name="priority" class="form-select">
+            <option value="">Priority</option>
+            <option value="Low" {% if priority == 'Low' %}selected{% endif %}>Low</option>
+            <option value="Medium" {% if priority == 'Medium' %}selected{% endif %}>Medium</option>
+            <option value="High" {% if priority == 'High' %}selected{% endif %}>High</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-outline-primary w-100">Apply</button>
+        </div>
+        <div class="col-md-2">
+          <a href="/" class="btn btn-outline-secondary w-100">Reset</a>
+        </div>
+      </form>
+
+      <!-- Task List -->
+      <table class="table table-bordered table-hover shadow">
+        <thead class="table-light">
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Priority</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for task in tasks %}
+          <tr class="{% if task.completed %}table-success{% endif %}">
+            <td>{{ task.title }}</td>
+            <td>{{ task.description or '-' }}</td>
+            <td>{{ task.priority or '-' }}</td>
+            <td>
+              {{ task.due_date.strftime('%Y-%m-%d') if task.due_date else '-' }}
+            </td>
+            <td>{{ 'Completed' if task.completed else 'Pending' }}</td>
+            <td>
+              <a
+                href="/toggle/{{ task.id }}"
+                class="btn btn-sm btn-outline-secondary"
+              >
+                {% if task.completed %}Undo{% else %}Done{% endif %}
+              </a>
+              <a
+                href="/delete/{{ task.id }}"
+                class="btn btn-sm btn-outline-danger"
+                onclick="return confirm('Delete this task?')"
+                >Delete</a
+              >
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="6" class="text-center text-muted">No tasks yet</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

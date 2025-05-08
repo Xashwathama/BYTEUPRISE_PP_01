@@ -1,0 +1,23 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+h2 {
+    font-weight: 600;
+    color: #333;
+}
+
+table {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.btn {
+    font-size: 0.875rem;
+}
+
+.table-success {
+    background-color: #d4edda !important;
+}
