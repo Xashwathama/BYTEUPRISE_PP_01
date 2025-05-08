@@ -46,7 +46,10 @@ A simple yet powerful To-Do List web application built using **Flask** and **HTM
       ```bash
       http://127.0.0.1:5000/
 
-##Project Structure
+---
+
+## Project Structure
+
 flask-todo-list/
 │
 ├── app.py
