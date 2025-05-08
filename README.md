@@ -14,7 +14,7 @@ A simple yet powerful To-Do List web application built using **Flask** and **HTM
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Backend:** Python (Flask)
 - **Frontend:** HTML, CSS
@@ -42,10 +42,16 @@ A simple yet powerful To-Do List web application built using **Flask** and **HTM
       ```bash
       python app.py
 
-5. Open in your browser
+5. **Open in your browser**
       ```bash
       http://127.0.0.1:5000/
 
-
-
-
+##Project Structure
+flask-todo-list/
+│
+├── app.py
+├── static/
+│   └── styles.css
+├── templates/
+│   └── index.html
+└── README.md
